@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/platform-browser'), require('@angular/material'), require('@angular/common'), require('@angular/platform-browser/animations'), require('@angular/flex-layout')) :
-    typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/platform-browser', '@angular/material', '@angular/common', '@angular/platform-browser/animations', '@angular/flex-layout'], factory) :
-    (factory((global.matMarkdownEditor = {}),global.ng.core,null,null,null,global.ng.common,null,null));
-}(this, (function (exports,core,forms,platformBrowser,material,common,animations,flexLayout) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/platform-browser'), require('@angular/material'), require('@angular/common'), require('@angular/flex-layout')) :
+    typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/platform-browser', '@angular/material', '@angular/common', '@angular/flex-layout'], factory) :
+    (factory((global.matMarkdownEditor = {}),global.ng.core,null,null,null,global.ng.common,null));
+}(this, (function (exports,core,forms,platformBrowser,material,common,flexLayout) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -583,7 +583,6 @@
                             forms.FormsModule,
                             MaterialModule,
                             forms.ReactiveFormsModule,
-                            animations.BrowserAnimationsModule,
                             flexLayout.FlexLayoutModule,
                         ],
                         exports: [MatMarkdownEditorComponent],
