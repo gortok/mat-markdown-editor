@@ -1,0 +1,39 @@
+{
+  "name": "mat-markdown-editor",
+  "version": "0.0.8",
+  "description": "Material design markdown editor",
+  "keywords": [
+    "markdown",
+    "text editor",
+    "angular",
+    "material design"
+  ],
+  "author": {
+    "name": "Michael Doye",
+    "url": "https://github.com/michaeldoye"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/michaeldoye/mat-markdown-editor.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaeldoye/mat-markdown-editor/issues"
+  },
+  "homepage": "https://github.com/michaeldoye/mat-markdown-editor",
+  "main": "./bundles/mat-markdown-editor.umd.js",
+  "module": "./esm5/mat-markdown-editor.es5.js",
+  "es2015": "./esm2015/mat-markdown-editor.js",
+  "typings": "./mat-markdown-editor.d.ts",
+  "peerDependencies": {
+    "@angular/cdk": "^7.3.3",
+    "@angular/common": "^7.2.8",
+    "@angular/core": "^7.2.8",
+    "@angular/flex-layout": "^7.0.0-beta.23",
+    "@angular/forms": "^7.2.8",
+    "@angular/material": "^7.3.3",
+    "gh-got": "^8.1.0",
+    "jest-cli": "^24.3.1",
+    "tsickle": "^0.34.3"
+  }
+}
