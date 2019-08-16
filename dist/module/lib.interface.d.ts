@@ -10,6 +10,9 @@ export interface MatMarkdownEditorOptions {
     mode?: string;
     preRender?: Function;
     toolbarColor?: string;
+    enableBasicAutocompletion: boolean;
+    enableLiveAutocompletion: boolean;
+    completer: LangCompleter;
 }
 export interface MarkedjsOption {
     baseUrl?: string;
@@ -27,4 +30,7 @@ export interface MarkedjsOption {
     smartypants?: boolean;
     tables?: boolean;
     xhtml?: boolean;
+}
+export interface LangCompleter {
+    getCompleter(editor: any, session: any, pos: any, prefix: any, callback: Function): void;
 }

@@ -134,6 +134,15 @@ class MatMarkdownEditorComponent {
         this.editor.getSession().setMode('ace/mode/markdown');
         this.editor.setValue(this.markdownValue || '', 1);
         this.editor.setOption('scrollPastEnd', this._options.scrollPastEnd || 0);
+        if (this.options.enableBasicAutocompletion) {
+            /** @type {?} */
+            const langTools = ace.require('ace/ext/language_tools');
+            this.editor.setOptions({
+                enableBasicAutocompletion: this.options.enableBasicAutocompletion,
+                enableLiveAutocompletion: this.options.enableLiveAutocompletion
+            });
+            langTools.addCompleter(this.options.completer);
+        }
         this.editor.on('change', (/**
          * @return {?}
          */
