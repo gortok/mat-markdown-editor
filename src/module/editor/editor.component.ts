@@ -112,11 +112,12 @@ export class MatMarkdownEditorComponent
     this.editor.setOption('scrollPastEnd', this._options.scrollPastEnd || 0);
     if (this.options.enableBasicAutocompletion) {
       const langTools = ace.require('ace/ext/language_tools');
+      langTools.addCompleter(this.options.completer);
       this.editor.setOptions({
         enableBasicAutocompletion: this.options.enableBasicAutocompletion,
         enableLiveAutocompletion : this.options.enableLiveAutocompletion
       });
-      langTools.addCompleter(this.options.completer);
+      
     }
     this.editor.on('change', () => {
       this.markdownValue = this.editor.getValue();
