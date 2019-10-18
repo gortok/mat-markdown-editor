@@ -32,5 +32,5 @@ export interface MarkedjsOption {
     xhtml?: boolean;
 }
 export interface LangCompleter {
-    getCompleter(editor: any, session: any, pos: any, prefix: any, callback: Function): void;
+    getCompletions(editor: any, session: any, pos: any, prefix: any, callback: Function): void;
 }

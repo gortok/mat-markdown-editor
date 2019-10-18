@@ -137,11 +137,12 @@ class MatMarkdownEditorComponent {
         if (this.options.enableBasicAutocompletion) {
             /** @type {?} */
             const langTools = ace.require('ace/ext/language_tools');
+            langTools.setCompleters([]);
+            langTools.addCompleter(this.options.completer);
             this.editor.setOptions({
                 enableBasicAutocompletion: this.options.enableBasicAutocompletion,
                 enableLiveAutocompletion: this.options.enableLiveAutocompletion
             });
-            langTools.addCompleter(this.options.completer);
         }
         this.editor.on('change', (/**
          * @return {?}
