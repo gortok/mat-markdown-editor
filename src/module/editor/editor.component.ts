@@ -118,6 +118,11 @@ export class MatMarkdownEditorComponent
         enableBasicAutocompletion: this.options.enableBasicAutocompletion,
         enableLiveAutocompletion : this.options.enableLiveAutocompletion
       });
+      if (this.options.fontSize) {
+        this.editor.setOptions({
+          fontSize : String(this.options.fontSize) + 'pt'
+        })
+      }
     }
     this.editor.on('change', () => {
       this.markdownValue = this.editor.getValue();

@@ -11,6 +11,7 @@ export interface MatMarkdownEditorOptions {
   mode?: string;
   preRender?: Function;
   toolbarColor?: string;
+  fontSize?: number;
   enableBasicAutocompletion: boolean;
   enableLiveAutocompletion: boolean;
   completer: LangCompleter;
