@@ -49,7 +49,7 @@ export class MatMarkdownEditorComponent
   @ViewChild('aceEditor') public aceEditorContainer: ElementRef;
   @Input() public options: MatMarkdownEditorOptions;
 
-  public showPreviewPanel = true;
+  @Input() public showPreviewPanel = true;
   public isFullScreen = false;
   public previewHtml: any;
   public editor: any;

@@ -306,7 +306,8 @@ var MatMarkdownEditorComponent = /** @class */ (function () {
     ]; };
     MatMarkdownEditorComponent.propDecorators = {
         aceEditorContainer: [{ type: ViewChild, args: ['aceEditor',] }],
-        options: [{ type: Input }]
+        options: [{ type: Input }],
+        showPreviewPanel: [{ type: Input }]
     };
     return MatMarkdownEditorComponent;
 }());

@@ -305,7 +305,8 @@
         ]; };
         MatMarkdownEditorComponent.propDecorators = {
             aceEditorContainer: [{ type: core.ViewChild, args: ['aceEditor',] }],
-            options: [{ type: core.Input }]
+            options: [{ type: core.Input }],
+            showPreviewPanel: [{ type: core.Input }]
         };
         return MatMarkdownEditorComponent;
     }());
