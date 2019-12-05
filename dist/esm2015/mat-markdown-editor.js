@@ -3,7 +3,6 @@ import { NG_VALUE_ACCESSOR, NG_VALIDATORS, FormsModule, ReactiveFormsModule } fr
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatExpansionModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatStepperModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 /**
@@ -135,6 +134,21 @@ class MatMarkdownEditorComponent {
         this.editor.getSession().setMode('ace/mode/markdown');
         this.editor.setValue(this.markdownValue || '', 1);
         this.editor.setOption('scrollPastEnd', this._options.scrollPastEnd || 0);
+        if (this.options.enableBasicAutocompletion) {
+            /** @type {?} */
+            const langTools = ace.require('ace/ext/language_tools');
+            langTools.setCompleters([]);
+            langTools.addCompleter(this.options.completer);
+            this.editor.setOptions({
+                enableBasicAutocompletion: this.options.enableBasicAutocompletion,
+                enableLiveAutocompletion: this.options.enableLiveAutocompletion
+            });
+            if (this.options.fontSize) {
+                this.editor.setOptions({
+                    fontSize: String(this.options.fontSize) + 'pt'
+                });
+            }
+        }
         this.editor.on('change', (/**
          * @return {?}
          */
@@ -298,7 +312,8 @@ MatMarkdownEditorComponent.ctorParameters = () => [
 ];
 MatMarkdownEditorComponent.propDecorators = {
     aceEditorContainer: [{ type: ViewChild, args: ['aceEditor',] }],
-    options: [{ type: Input }]
+    options: [{ type: Input }],
+    showPreviewPanel: [{ type: Input }]
 };
 
 /**
@@ -707,7 +722,6 @@ MatMarkdownEditorModule.decorators = [
                     FormsModule,
                     MaterialModule,
                     ReactiveFormsModule,
-                    BrowserAnimationsModule,
                     FlexLayoutModule,
                 ],
                 exports: [MatMarkdownEditorComponent],

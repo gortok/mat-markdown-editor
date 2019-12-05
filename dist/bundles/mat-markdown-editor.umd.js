@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/platform-browser'), require('@angular/material'), require('@angular/common'), require('@angular/platform-browser/animations'), require('@angular/flex-layout')) :
-    typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/platform-browser', '@angular/material', '@angular/common', '@angular/platform-browser/animations', '@angular/flex-layout'], factory) :
-    (factory((global.matMarkdownEditor = {}),global.ng.core,null,null,null,global.ng.common,null,null));
-}(this, (function (exports,core,forms,platformBrowser,material,common,animations,flexLayout) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/platform-browser'), require('@angular/material'), require('@angular/common'), require('@angular/flex-layout')) :
+    typeof define === 'function' && define.amd ? define(['exports', '@angular/core', '@angular/forms', '@angular/platform-browser', '@angular/material', '@angular/common', '@angular/flex-layout'], factory) :
+    (factory((global.matMarkdownEditor = {}),global.ng.core,null,null,null,global.ng.common,null));
+}(this, (function (exports,core,forms,platformBrowser,material,common,flexLayout) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -142,6 +142,21 @@
             this.editor.getSession().setMode('ace/mode/markdown');
             this.editor.setValue(this.markdownValue || '', 1);
             this.editor.setOption('scrollPastEnd', this._options.scrollPastEnd || 0);
+            if (this.options.enableBasicAutocompletion) {
+                /** @type {?} */
+                var langTools = ace.require('ace/ext/language_tools');
+                langTools.setCompleters([]);
+                langTools.addCompleter(this.options.completer);
+                this.editor.setOptions({
+                    enableBasicAutocompletion: this.options.enableBasicAutocompletion,
+                    enableLiveAutocompletion: this.options.enableLiveAutocompletion
+                });
+                if (this.options.fontSize) {
+                    this.editor.setOptions({
+                        fontSize: String(this.options.fontSize) + 'pt'
+                    });
+                }
+            }
             this.editor.on('change', (/**
              * @return {?}
              */
@@ -290,7 +305,8 @@
         ]; };
         MatMarkdownEditorComponent.propDecorators = {
             aceEditorContainer: [{ type: core.ViewChild, args: ['aceEditor',] }],
-            options: [{ type: core.Input }]
+            options: [{ type: core.Input }],
+            showPreviewPanel: [{ type: core.Input }]
         };
         return MatMarkdownEditorComponent;
     }());
@@ -583,7 +599,6 @@
                             forms.FormsModule,
                             MaterialModule,
                             forms.ReactiveFormsModule,
-                            animations.BrowserAnimationsModule,
                             flexLayout.FlexLayoutModule,
                         ],
                         exports: [MatMarkdownEditorComponent],

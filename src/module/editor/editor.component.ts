@@ -25,6 +25,7 @@ declare let ace: any;
 declare let marked: any;
 declare let hljs: any;
 
+
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'mat-markdown-editor',
@@ -48,7 +49,7 @@ export class MatMarkdownEditorComponent
   @ViewChild('aceEditor') public aceEditorContainer: ElementRef;
   @Input() public options: MatMarkdownEditorOptions;
 
-  public showPreviewPanel = true;
+  @Input() public showPreviewPanel = true;
   public isFullScreen = false;
   public previewHtml: any;
   public editor: any;
@@ -109,7 +110,20 @@ export class MatMarkdownEditorComponent
     this.editor.getSession().setMode('ace/mode/markdown');
     this.editor.setValue(this.markdownValue || '', 1);
     this.editor.setOption('scrollPastEnd', this._options.scrollPastEnd || 0);
-
+    if (this.options.enableBasicAutocompletion) {
+      const langTools = ace.require('ace/ext/language_tools');
+      langTools.setCompleters([]);
+      langTools.addCompleter(this.options.completer);
+      this.editor.setOptions({
+        enableBasicAutocompletion: this.options.enableBasicAutocompletion,
+        enableLiveAutocompletion : this.options.enableLiveAutocompletion
+      });
+      if (this.options.fontSize) {
+        this.editor.setOptions({
+          fontSize : String(this.options.fontSize) + 'pt'
+        })
+      }
+    }
     this.editor.on('change', () => {
       this.markdownValue = this.editor.getValue();
     });

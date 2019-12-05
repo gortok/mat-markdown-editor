@@ -11,6 +11,10 @@ export interface MatMarkdownEditorOptions {
   mode?: string;
   preRender?: Function;
   toolbarColor?: string;
+  fontSize?: number;
+  enableBasicAutocompletion: boolean;
+  enableLiveAutocompletion: boolean;
+  completer: LangCompleter;
 }
 
 export interface MarkedjsOption {
@@ -29,4 +33,8 @@ export interface MarkedjsOption {
   smartypants?: boolean; // Default false
   tables?: boolean; // Default true
   xhtml?: boolean; // Default false
+}
+
+export interface LangCompleter {
+  getCompletions(editor: any, session: any, pos: any, prefix: any, callback: Function): void;
 }
