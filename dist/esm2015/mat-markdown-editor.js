@@ -247,6 +247,7 @@ MatMarkdownEditorComponent.decorators = [
       <div class="md-layout">
         <mat-markdown-editor-toolbar
           [options]="options"
+          [showPreviewPanel]="showPreviewPanel"
           [editor]="editor"
           [isFullScreen]="isFullScreen"
           (onTogglePreview)="onTogglePreview($event)"
