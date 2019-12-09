@@ -565,6 +565,7 @@
         ]; };
         EditorToolbarComponent.propDecorators = {
             options: [{ type: core.Input }],
+            showPreviewPanel: [{ type: core.Input }],
             isFullScreen: [{ type: core.Input }],
             editor: [{ type: core.Input }],
             onTogglePreview: [{ type: core.Output }],

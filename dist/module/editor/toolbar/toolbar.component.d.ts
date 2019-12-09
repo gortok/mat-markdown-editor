@@ -2,6 +2,7 @@ import { EventEmitter, Renderer2 } from '@angular/core';
 export declare class EditorToolbarComponent {
     private _renderer;
     options: any;
+    showPreviewPanel: boolean;
     isFullScreen: boolean;
     private editor;
     onTogglePreview: EventEmitter<{}>;

@@ -566,6 +566,7 @@ var EditorToolbarComponent = /** @class */ (function () {
     ]; };
     EditorToolbarComponent.propDecorators = {
         options: [{ type: Input }],
+        showPreviewPanel: [{ type: Input }],
         isFullScreen: [{ type: Input }],
         editor: [{ type: Input }],
         onTogglePreview: [{ type: Output }],
