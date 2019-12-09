@@ -14,6 +14,7 @@ import {
 })
 export class EditorToolbarComponent {
   @Input() public options: any;
+  @Input() public showPreviewPanel: boolean;
   @Input() public isFullScreen: boolean;
   @Input() private editor: any;
   @Output() public onTogglePreview = new EventEmitter();
