@@ -143,6 +143,7 @@ var MatMarkdownEditorComponent = /** @class */ (function () {
         this.editor.getSession().setMode('ace/mode/markdown');
         this.editor.setValue(this.markdownValue || '', 1);
         this.editor.setOption('scrollPastEnd', this._options.scrollPastEnd || 0);
+        this.editor.setOption('spellcheck', true);
         if (this.options.enableBasicAutocompletion) {
             /** @type {?} */
             var langTools = ace.require('ace/ext/language_tools');
