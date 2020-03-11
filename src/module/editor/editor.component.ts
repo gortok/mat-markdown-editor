@@ -8,6 +8,7 @@ import {
   OnInit,
   OnDestroy,
   ElementRef,
+  Renderer2
 } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,
@@ -58,6 +59,7 @@ export class MatMarkdownEditorComponent
   private _markdownValue: any;
   private _options: any = {};
   private _markedOpt: any;
+  private editorElement: any;
 
   private _onChange = (_: any) => {};
   private _onTouched = () => {};
@@ -86,7 +88,8 @@ export class MatMarkdownEditorComponent
   constructor(
     @Attribute('required') public required: boolean = false,
     @Attribute('maxlength') public maxlength: number = -1,
-    private _domSanitizer: DomSanitizer
+    private _domSanitizer: DomSanitizer,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -128,6 +131,7 @@ export class MatMarkdownEditorComponent
     this.editor.on('change', () => {
       this.markdownValue = this.editor.getValue();
     });
+    this.renderer.setAttribute(this.aceEditorContainer.nativeElement, 'spellcheck', 'true');
   }
 
   writeValue(value: any | Array<any>): void {

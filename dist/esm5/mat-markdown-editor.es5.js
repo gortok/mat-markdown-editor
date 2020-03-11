@@ -1,4 +1,4 @@
-import { Component, ViewChild, forwardRef, Attribute, Input, Injectable, NgModule, Output, EventEmitter, Renderer2 } from '@angular/core';
+import { Component, ViewChild, forwardRef, Attribute, Input, Renderer2, Injectable, NgModule, Output, EventEmitter } from '@angular/core';
 import { NG_VALUE_ACCESSOR, NG_VALIDATORS, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatExpansionModule, MatGridListModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatNativeDateModule, MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule, MatSortModule, MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatStepperModule } from '@angular/material';
@@ -50,12 +50,13 @@ function markDownCode(code, language) {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var MatMarkdownEditorComponent = /** @class */ (function () {
-    function MatMarkdownEditorComponent(required, maxlength, _domSanitizer) {
+    function MatMarkdownEditorComponent(required, maxlength, _domSanitizer, renderer) {
         if (required === void 0) { required = false; }
         if (maxlength === void 0) { maxlength = -1; }
         this.required = required;
         this.maxlength = maxlength;
         this._domSanitizer = _domSanitizer;
+        this.renderer = renderer;
         this.showPreviewPanel = true;
         this.isFullScreen = false;
         this._options = {};
@@ -165,6 +166,7 @@ var MatMarkdownEditorComponent = /** @class */ (function () {
         function () {
             _this.markdownValue = _this.editor.getValue();
         }));
+        this.renderer.setAttribute(this.aceEditorContainer.nativeElement, 'spellcheck', 'true');
     };
     /**
      * @param {?} value
@@ -303,7 +305,8 @@ var MatMarkdownEditorComponent = /** @class */ (function () {
     MatMarkdownEditorComponent.ctorParameters = function () { return [
         { type: Boolean, decorators: [{ type: Attribute, args: ['required',] }] },
         { type: Number, decorators: [{ type: Attribute, args: ['maxlength',] }] },
-        { type: DomSanitizer }
+        { type: DomSanitizer },
+        { type: Renderer2 }
     ]; };
     MatMarkdownEditorComponent.propDecorators = {
         aceEditorContainer: [{ type: ViewChild, args: ['aceEditor',] }],

@@ -1,4 +1,4 @@
-import { AfterViewInit, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { AfterViewInit, OnInit, OnDestroy, ElementRef, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, Validator, AbstractControl, ValidationErrors } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatMarkdownEditorOptions } from '../lib.interface';
@@ -6,6 +6,7 @@ export declare class MatMarkdownEditorComponent implements ControlValueAccessor,
     required: boolean;
     maxlength: number;
     private _domSanitizer;
+    private renderer;
     aceEditorContainer: ElementRef;
     options: MatMarkdownEditorOptions;
     showPreviewPanel: boolean;
@@ -16,10 +17,11 @@ export declare class MatMarkdownEditorComponent implements ControlValueAccessor,
     private _markdownValue;
     private _options;
     private _markedOpt;
+    private editorElement;
     private _onChange;
     private _onTouched;
     markdownValue: any;
-    constructor(required: boolean, maxlength: number, _domSanitizer: DomSanitizer);
+    constructor(required: boolean, maxlength: number, _domSanitizer: DomSanitizer, renderer: Renderer2);
     ngOnInit(): void;
     ngAfterViewInit(): void;
     writeValue(value: any | Array<any>): void;

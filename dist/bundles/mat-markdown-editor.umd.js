@@ -49,12 +49,13 @@
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var MatMarkdownEditorComponent = /** @class */ (function () {
-        function MatMarkdownEditorComponent(required, maxlength, _domSanitizer) {
+        function MatMarkdownEditorComponent(required, maxlength, _domSanitizer, renderer) {
             if (required === void 0) { required = false; }
             if (maxlength === void 0) { maxlength = -1; }
             this.required = required;
             this.maxlength = maxlength;
             this._domSanitizer = _domSanitizer;
+            this.renderer = renderer;
             this.showPreviewPanel = true;
             this.isFullScreen = false;
             this._options = {};
@@ -164,6 +165,7 @@
             function () {
                 _this.markdownValue = _this.editor.getValue();
             }));
+            this.renderer.setAttribute(this.aceEditorContainer.nativeElement, 'spellcheck', 'true');
         };
         /**
          * @param {?} value
@@ -302,7 +304,8 @@
         MatMarkdownEditorComponent.ctorParameters = function () { return [
             { type: Boolean, decorators: [{ type: core.Attribute, args: ['required',] }] },
             { type: Number, decorators: [{ type: core.Attribute, args: ['maxlength',] }] },
-            { type: platformBrowser.DomSanitizer }
+            { type: platformBrowser.DomSanitizer },
+            { type: core.Renderer2 }
         ]; };
         MatMarkdownEditorComponent.propDecorators = {
             aceEditorContainer: [{ type: core.ViewChild, args: ['aceEditor',] }],
