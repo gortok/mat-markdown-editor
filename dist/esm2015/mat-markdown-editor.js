@@ -159,6 +159,7 @@ class MatMarkdownEditorComponent {
             this.markdownValue = this.editor.getValue();
         }));
         this.renderer.setAttribute(this.aceEditorContainer.nativeElement, 'spellcheck', 'true');
+        this.renderer.setAttribute(this.aceEditorContainer.nativeElement, 'contenteditable', 'true');
     }
     /**
      * @param {?} value
